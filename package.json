@@ -1,0 +1,33 @@
+{
+  "name": "time-to-eat",
+  "version": "1.0.0",
+  "description": "use our search to help you plan your meals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack-dev": "webpack -d --watch",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nehacp/hrsf81-mvp.git"
+  },
+  "author": "Neha Chaudhary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nehacp/hrsf81-mvp/issues"
+  },
+  "homepage": "https://github.com/nehacp/hrsf81-mvp#readme",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.6.0"
+  }
+}

@@ -18,27 +18,45 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  It's time to eat!
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+ A foodie but not sure what to cook for dinner? Use our app to guide you!
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  Search meals based on categories, ingredients, the latest ones or a random one if you can't decide. Star your favorite recipes so you can come back to them in the future.
+
 ## Problem ##
   > Describe the problem your product solves.
+
+  Spending too much time thinking about what to eat today
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
+  Lets you search our database for choices
+
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+
+  After a full belly, all is poetry!
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
 
+  Just log on to the page and search. If you like what you see, create a user id to save your info!
+
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
+  Delicious recipe ideas at the click of a button!
+
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+
+  A link to our page
+
+
