@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/favoriteRecipes');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  // we're connected!
+	console.log('connected to database');
 });
 
 const Recipe = mongoose.model('recipes', new Schema ({
@@ -23,6 +23,21 @@ const Recipe = mongoose.model('recipes', new Schema ({
 	})
 );
 
+const User = mongoose.model('user', new Schema ({
+		name: {
+			type: String,
+			unique: true
+		},
+
+		password: String,
+	})
+)
+
+const addUser = (user, callback) => {
+	new User(user).save(callback); 
+}
+
+
 const addRecipe = (recipe, callback) => {
 	let newRecipe = new Recipe(recipe);
 	newRecipe.save(callback);
@@ -34,3 +49,4 @@ const fetchRecipes = (callback) => {
 
 module.exports.addRecipe = addRecipe;
 module.exports.fetchRecipes = fetchRecipes;
+module.exports.addUser = addUser;

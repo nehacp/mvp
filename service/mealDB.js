@@ -7,17 +7,17 @@ angular.module('plan-meals')
 			let url = 'http://127.0.0.1:2345/recipes';
 			url += `?${param}`;
 			$http.get(url).then((response) => {
-				console.log('received data', response.data);
+				// console.log('received data', response.data);
 				callback(response.data);
 
 			}).catch(err => console.log('error in GET request', err));
 		}
 
-		let add = (recipe, callback) => {
+		let add = (info, callback) => {
 			let url = 'http://127.0.0.1:2345/recipes';
-			$http.post(url, {favorite: recipe}).then((data) => {
+			$http.post(url, info).then((data) => {
 				console.log('POST request success', data);
-				callback();
+				callback(data);
 			}).catch(err => console.log('error in POST request', err));
 		}
 

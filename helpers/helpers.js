@@ -1,5 +1,5 @@
 const request = require('request');
-
+// const crypto = require('crypto');
 
 getRecipesFromMealDB = function(param, callback) {
 
@@ -56,9 +56,18 @@ const parseRecipes = (recipes, callback) => {
 	callback(parsed);
 }
 
+// const createPassword = (password) => {
+// 	const hash = crypto.createHash('sha246');
+// 	let newPass = hash.update(password);
+// 	console.log('new pass', newPass);
+// 	return newPass;
+
+// }
+
 
 module.exports.getRecipesFromMealDB = getRecipesFromMealDB;
 module.exports.parseRecipes = parseRecipes;
+// module.exports.createPassword = createPassword;
 
 
 // let mealsByCategory = `http://www.themealdb.com/api/json/v1/1/list.php?c=${param}`

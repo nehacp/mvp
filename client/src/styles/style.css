@@ -16,6 +16,7 @@ body {
 
 h2 {
 	display: inline;
+	margin-left: 220px;
 }
 
 .all-recipes {
@@ -23,6 +24,13 @@ h2 {
 }
 
 .search-field {
+	width: 200px;
+	height: 20px;
+}
+
+.username, .password {
+	padding: 5px;
+	margin:10px;
 	width: 200px;
 	height: 20px;
 }
@@ -36,6 +44,11 @@ h2 {
 	font-size: 16px;
 	margin:20px;
 	margin-top:10px;
+}
+
+.recipe-headings {
+	text-decoration: underline;
+	font-size: 18px;
 }
 
 .method-line, .ingredient-line {
@@ -56,13 +69,26 @@ img {
 	width: 700px;
 }
 
-a {
+.recipe-name {
 	font-size: 25px;
+}
+
+a {
 	color: rgb(89, 89, 89);
+	font-size: 14px;
+	margin: 2px;
 }
 
 a:hover {
-	color: rgb(140, 140, 140)
+	color: rgb(140, 140, 140);
+}
+
+
+.main-bar-options {
+	padding-right: 10px;
+	float: right;
+	font-size: 15px;
+	text-decoration: none;
 }
 
 .show-favorites {
@@ -71,11 +97,8 @@ a:hover {
 	font-size: 15px;
 }
 
-.favorites {
-	font-size: 14px;
-}
 
-.input-search, .random-search, .latest-search {
+.input-search, .random-search, .latest-search, .create-user, .login-user {
 	border: none;
 	background-color: white;
 	font-size: 14px;

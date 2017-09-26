@@ -12,7 +12,6 @@ app.use(express.static(__dirname+ './../'));
 app.use(bodyParser());
 
 app.get('/recipes', (req, res) => {
-
 	let data = urlMethods.parse(req.url);
 	let searchFor = data.query.replace(/%20/g, ' ');
 
@@ -25,7 +24,6 @@ app.get('/recipes', (req, res) => {
 			if (err) {console.log('error', err)};
 			console.log('favorite recipes', recipes);
 			res.status(200).send(recipes)
-			// res.send();
 		});
 	} else {
 		helpers.getRecipesFromMealDB(searchFor, (recipes) => {
@@ -34,12 +32,23 @@ app.get('/recipes', (req, res) => {
 	}
 });
 
-
 app.post('/recipes', (req, res) => {
-	db.addRecipe(req.body.favorite, (err, data) => {
-		if (err) {console.log('error', err)};
-		res.status(201).send();
-	});
+
+	if (req.body['favorite']) {
+		db.addRecipe(req.body.favorite, (err, data) => {
+			if (err) {console.log('error', err)};
+			res.status(201).send();
+		});
+	} else if (req.body['name']){
+		db.addUser(req.body, (err, data) => {
+			if (err) {
+				console.log('error', err);
+				res.send('User exists, please use another name');
+			};
+			res.send('Account created');
+		});
+	}
+
 	
 })
 
