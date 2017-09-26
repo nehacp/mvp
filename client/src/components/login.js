@@ -8,11 +8,12 @@ angular.module('plan-meals')
 		},
 
 		controller: function () {
+			
 			this.loginUser = (username, password) => {
 				this.login(username, password);
 				this.username = '';
 				this.password = '';
-			}
+			};
 		},
 
 		template: `

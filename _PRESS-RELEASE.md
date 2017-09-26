@@ -18,26 +18,28 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+
   It's time to eat!
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
- A foodie but not sure what to cook for dinner? Use our app to guide you!
 
+  Its meant for people who are always looking for new dishes to cook and eat!
+ 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
-  Search meals based on categories, ingredients, the latest ones or a random one if you can't decide. Star your favorite recipes so you can come back to them in the future.
+  When you don't know what to cook, you can search our database to find a recipe. You can see the latest recipes, search for random recipe or look up based on something that you have in mind. You can favorite recipes that you wish to come back to at a future date.
 
 ## Problem ##
   > Describe the problem your product solves.
 
-  Spending too much time thinking about what to eat today
+  There are so many times when we spend too much time trying to figure out what to cook or eat. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
 
-  Lets you search our database for choices
+  You don't spend too much time thinking about what to cook and get right to it!
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
@@ -47,7 +49,7 @@ Once the project moves into development, the press release can be used as a touc
 ## How to Get Started ##
   > Describe how easy it is to get started.
 
-  Just log on to the page and search. If you like what you see, create a user id to save your info!
+  All you need to do is open our page and you can see the latest recipes on the homepage.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
@@ -57,6 +59,5 @@ Once the project moves into development, the press release can be used as a touc
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
 
-  A link to our page
-
+  
 

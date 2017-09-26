@@ -13,7 +13,7 @@ angular.module('plan-meals')
 				if (!recipes) {
 					alert('No recipes found');
 				} else {
-					this.recipes = recipes; 	
+					this.recipes = recipes; 
 				} 
 			}
 
@@ -69,12 +69,14 @@ angular.module('plan-meals')
 				if (response === 'success') {
 					alert('Logged in');
 				} else {
-					alert('Invalid login/password, please try again');
+					alert(response);
 				}
 			}
 
 			this.homePage = () => {
 				server.search('latest', this.updateRecipes);
+				this.createUser = false;
+				this.login = false;
 			}
 
 			this.homePage();
@@ -83,7 +85,7 @@ angular.module('plan-meals')
 		template: `
 			<div id="main">
 				<div class="main-bar">
-					<h2><a class="app-name" href="#" ng-click="$ctrl.homePage()"> It's time to eat!</a></h2>
+					<a class="app-name" href="#" ng-click="$ctrl.homePage()">It's time to eat!</a>
 					<a href=#" class="main-bar-options" ng-click="$ctrl.getFavorites()">Show favorites</a>
 					<a href="#" class="main-bar-options" ng-click="$ctrl.signUpClick()">Sign up</a>
 					<a href="#" class="main-bar-options" ng-click="$ctrl.loginClick()">Login</a>

@@ -39,7 +39,6 @@ const addUser = (user, callback) => {
 }
 
 const findUser = (user, callback) => {
-	console.log('user in find user function', user);
 	User.find({name: user.loginId}).exec((callback));
 }
 
@@ -53,7 +52,12 @@ const fetchRecipes = (callback) => {
 	return Recipe.find().exec(callback);
 }
 
+const updateUserFavs = (callback) => {
+	return Recipe.find().exec(callback);
+}
+
 module.exports.addRecipe = addRecipe;
 module.exports.fetchRecipes = fetchRecipes;
 module.exports.addUser = addUser;
 module.exports.findUser = findUser;
+module.exports.updateUserFavs = updateUserFavs;

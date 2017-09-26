@@ -61,25 +61,25 @@ const parseRecipes = (recipes, callback) => {
 }
 
 const checkLoginDetails = (entry, userinDB) => {
-	console.log('check credentials entry', entry);
-	console.log('check credentials DB', userinDB);
-	console.log('user name', entry.loginId === userinDB.name);
-	console.log('password', entry.password === userinDB.password);
 	return entry.loginId === userinDB.name && entry.password === userinDB.password;
+}
+
+const addSession = (req, res, user) => {
+	res.cookie('timeToEat', user._id);
+	res.send('success');
 }
 
 // const createPassword = (password) => {
 // 	const hash = crypto.createHash('sha246');
-// 	let newPass = hash.update(password);
-// 	console.log('new pass', newPass);
-// 	return newPass;
-
+// 	hash.update(password);
+		//return hash.digest('hex');
 // }
 
 
 module.exports.getRecipesFromMealDB = getRecipesFromMealDB;
 module.exports.parseRecipes = parseRecipes;
 module.exports.checkLoginDetails = checkLoginDetails;
+module.exports.addSession = addSession;
 // module.exports.createPassword = createPassword;
 
 

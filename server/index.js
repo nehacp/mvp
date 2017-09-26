@@ -6,19 +6,24 @@ const path = require('path');
 const urlMethods = require('url');
 const helpers = require('./../helpers/helpers.js');
 const db = require('./../database');
-const session = require('./../helpers/createSession.js');
 
 
 app.use(express.static(__dirname+ './../'));
 app.use(bodyParser());
-// app.use(session.createSession);
+
 
 app.get('/recipes', (req, res) => {
 
+	console.log('USER COOKIE', req.headers.cookie);
 	let data = urlMethods.parse(req.url);
 	let searchFor = data.query.replace(/%20/g, ' ');
 
-  if (searchFor === 'favorites') {
+	// if (req.headers.cookie) {
+	// 	db.fetchUser({_id: req.headers.cookie}, (err, user) => {
+	// 		res.send(user[0].favorites);
+	// 	})
+	// } else 
+	if (searchFor === 'favorites') {
 		db.fetchRecipes((err, recipes) => {
 			if (err) {console.log('error', err)};
 			console.log('favorite recipes', recipes);
@@ -33,6 +38,11 @@ app.get('/recipes', (req, res) => {
 
 app.post('/recipes', (req, res) => {
 
+	// if (req.headers.cookie) {
+	// 	db.updateUserFavs({_id: req.headers.cookie}, (err, user) => {
+	// 		res.send(user[0].favorites);
+	// 	})
+	// } else
 	if (req.body['favorite']) {
 		db.addRecipe(req.body.favorite, (err, data) => {
 			if (err) {console.log('error', err)};
@@ -49,10 +59,13 @@ app.post('/recipes', (req, res) => {
 		});
 	} else if (req.body['loginId']) {
 		db.findUser(req.body, (err, user) => {
+			if (!user.length) {
+				res.send('User does not exist');
+			}
 			if (helpers.checkLoginDetails(req.body, user[0])) {
-				res.send('success');
+				helpers.addSession(req, res, user[0]);
 			} else {
-				res.send('error');
+				res.send('Invalid login/password, please try again');
 			}
 		})
 	}
