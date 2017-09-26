@@ -7,7 +7,9 @@ angular.module('plan-meals')
 			let url = 'http://127.0.0.1:2345/recipes';
 			url += `?${param}`;
 			$http.get(url).then((response) => {
+				console.log('received data', response.data);
 				callback(response.data);
+
 			}).catch(err => console.log('error in GET request', err));
 		}
 

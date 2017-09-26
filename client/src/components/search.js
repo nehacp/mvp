@@ -8,12 +8,14 @@ angular.module('plan-meals')
 		},
 
 		controller: function () {
+			
 			this.onClick = (value) => {
 				this.search(value);
 				this.value = '';
 			}
+
 		},
 
-		template: `<input placeholder="name of dish..." type="text" ng-model="$ctrl.value"/>
+		template: `<input class="search-field" placeholder="  find meal.." type="text" ng-model="$ctrl.value"/>
 					<button type="submit" ng-click="$ctrl.onClick($ctrl.value)">Search</button>`
 	});
