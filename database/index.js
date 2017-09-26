@@ -30,11 +30,17 @@ const User = mongoose.model('user', new Schema ({
 		},
 
 		password: String,
+		favorites: Array,
 	})
 )
 
 const addUser = (user, callback) => {
 	new User(user).save(callback); 
+}
+
+const findUser = (user, callback) => {
+	console.log('user in find user function', user);
+	User.find({name: user.loginId}).exec((callback));
 }
 
 
@@ -50,3 +56,4 @@ const fetchRecipes = (callback) => {
 module.exports.addRecipe = addRecipe;
 module.exports.fetchRecipes = fetchRecipes;
 module.exports.addUser = addUser;
+module.exports.findUser = findUser;

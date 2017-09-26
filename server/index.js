@@ -6,20 +6,19 @@ const path = require('path');
 const urlMethods = require('url');
 const helpers = require('./../helpers/helpers.js');
 const db = require('./../database');
+const session = require('./../helpers/createSession.js');
 
 
 app.use(express.static(__dirname+ './../'));
 app.use(bodyParser());
+// app.use(session.createSession);
 
 app.get('/recipes', (req, res) => {
+
 	let data = urlMethods.parse(req.url);
 	let searchFor = data.query.replace(/%20/g, ' ');
 
-	if (searchFor === '') {
-		helpers.getRecipesFromMealDB('latest', (recipes) => {
-			res.send(recipes);
-		});
-	} else if (searchFor === 'favorites') {
+  if (searchFor === 'favorites') {
 		db.fetchRecipes((err, recipes) => {
 			if (err) {console.log('error', err)};
 			console.log('favorite recipes', recipes);
@@ -42,11 +41,20 @@ app.post('/recipes', (req, res) => {
 	} else if (req.body['name']){
 		db.addUser(req.body, (err, data) => {
 			if (err) {
-				console.log('error', err);
+				console.log('error adding user', err);
 				res.send('User exists, please use another name');
-			};
-			res.send('Account created');
+			} else {
+				res.send('Account created');
+			}
 		});
+	} else if (req.body['loginId']) {
+		db.findUser(req.body, (err, user) => {
+			if (helpers.checkLoginDetails(req.body, user[0])) {
+				res.send('success');
+			} else {
+				res.send('error');
+			}
+		})
 	}
 
 	

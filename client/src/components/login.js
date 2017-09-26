@@ -9,7 +9,9 @@ angular.module('plan-meals')
 
 		controller: function () {
 			this.loginUser = (username, password) => {
-				console.log('here with login details', username, password);
+				this.login(username, password);
+				this.username = '';
+				this.password = '';
 			}
 		},
 

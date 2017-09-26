@@ -113,3 +113,18 @@ a:hover {
 .input-search {
 	font-size: 12px;
 }
+
+.app-name {
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.thumbnail:hover {
+    margin: auto;
+    top:-25px;
+    left:-35px;
+    width:600px;
+    height:auto;
+    display:block;
+    z-index:999;
+}

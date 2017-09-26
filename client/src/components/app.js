@@ -5,64 +5,88 @@
 
 angular.module('plan-meals')
 	.component('app', {
-		controller: function (mealDB) {
+		controller: function (server) {
 			this.createUser = false;
 			this.login = false;
 
 			this.updateRecipes = (recipes) => {
-				this.recipes = recipes; 
+				if (!recipes) {
+					alert('No recipes found');
+				} else {
+					this.recipes = recipes; 	
+				} 
 			}
 
 			this.onSearch = (searchFor) => {
-				mealDB.search(searchFor.toLowerCase(), this.updateRecipes);
-			}
-
-			this.added = () => {
-				alert('Added');
+				server.search(searchFor.toLowerCase(), this.updateRecipes);
 			}
 
 			this.addToFavorites = (recipe) => {
 				let favorite = {favorite: recipe};
-				mealDB.add(favorite, this.added);
+				server.add(favorite, () => alert('Added'));
 			}
 
 			this.getFavorites = () => {
 				this.login = false;
 				this.createUser = false;
-				mealDB.search('favorites', this.updateRecipes);
+				server.search('favorites', this.updateRecipes);
 			}
 
 			this.signUpUser = (username, password) => {
 				let user = {name: username, password: password};
-				mealDB.add(user, this.created);
+				server.add(user, this.created);
 			}
 
-			this.created = (data) => {
-				if (data.includes('User exists')) {
-					alert('data');
+			this.created = (response) => {
+				if (response.includes('User exists')) {
+					alert(response);
 				} else {
 					this.createUser = false;
-					this.login = true;		
+					alert(response);
+					this.login = true;
 				}
-				//if user exists
-					//create another account
-				//else render login page
 			}
 
-			this.loginUser = () => {
-				//log in user
+			this.loginClick = () => {
+				if (this.createUser) {
+					this.createUser = false
+				}
+				this.login = true;
 			}
 
-			mealDB.search('', this.updateRecipes);
+			this.signUpClick = () => {
+				if (this.login) {
+					this.login = false
+				}
+				this.createUser = true;
+			}
+
+			this.loginUser = (loginId, password) => {
+				server.add({loginId: loginId, password: password}, this.loggedIn);
+			}
+
+			this.loggedIn = (response) => {
+				if (response === 'success') {
+					alert('Logged in');
+				} else {
+					alert('Invalid login/password, please try again');
+				}
+			}
+
+			this.homePage = () => {
+				server.search('latest', this.updateRecipes);
+			}
+
+			this.homePage();
 		},
 
 		template: `
 			<div id="main">
 				<div class="main-bar">
-					<h2 class="app-name">It's time to eat!</h2>
+					<h2><a class="app-name" href="#" ng-click="$ctrl.homePage()"> It's time to eat!</a></h2>
 					<a href=#" class="main-bar-options" ng-click="$ctrl.getFavorites()">Show favorites</a>
-					<a href="#" class="main-bar-options" ng-click="$ctrl.createUser = !$ctrl.createUser">Sign up</a>
-					<a href="#" class="main-bar-options" ng-click="$ctrl.login = !$ctrl.login">Login</a>
+					<a href="#" class="main-bar-options" ng-click="$ctrl.signUpClick()">Sign up</a>
+					<a href="#" class="main-bar-options" ng-click="$ctrl.loginClick()">Login</a>
 				</div>
 				<signup ng-if="$ctrl.createUser" create="$ctrl.signUpUser"></signup>
 				<login ng-if="$ctrl.login" login="$ctrl.loginUser"></login>

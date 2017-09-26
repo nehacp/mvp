@@ -19,7 +19,11 @@ getRecipesFromMealDB = function(param, callback) {
 
 	request(searchBy, (err, response, meals1) => {
 		meals = meals1 ? meals.concat(JSON.parse(meals1).meals) : meals;
-		parseRecipes(meals, callback);
+		 if (meals[0] === null) {
+		 	callback(null);
+		 } else {
+			parseRecipes(meals, callback);
+		 }
 	})
 }
 
@@ -56,6 +60,14 @@ const parseRecipes = (recipes, callback) => {
 	callback(parsed);
 }
 
+const checkLoginDetails = (entry, userinDB) => {
+	console.log('check credentials entry', entry);
+	console.log('check credentials DB', userinDB);
+	console.log('user name', entry.loginId === userinDB.name);
+	console.log('password', entry.password === userinDB.password);
+	return entry.loginId === userinDB.name && entry.password === userinDB.password;
+}
+
 // const createPassword = (password) => {
 // 	const hash = crypto.createHash('sha246');
 // 	let newPass = hash.update(password);
@@ -67,6 +79,7 @@ const parseRecipes = (recipes, callback) => {
 
 module.exports.getRecipesFromMealDB = getRecipesFromMealDB;
 module.exports.parseRecipes = parseRecipes;
+module.exports.checkLoginDetails = checkLoginDetails;
 // module.exports.createPassword = createPassword;
 
 
