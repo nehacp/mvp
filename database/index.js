@@ -28,8 +28,9 @@ const addRecipe = (recipe, callback) => {
 	newRecipe.save(callback);
 }
 
-const findRecipe = (param) => {
-	//Recipes.find()
+const fetchRecipes = (callback) => {
+	return Recipe.find().exec(callback);
 }
 
 module.exports.addRecipe = addRecipe;
+module.exports.fetchRecipes = fetchRecipes;

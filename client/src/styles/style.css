@@ -5,6 +5,19 @@ body {
 	color: rgb(89, 89, 89);
 }
 
+.main-bar {
+	background-color: white;
+	margin-top: -8px;
+	padding: 5px;
+	margin-left: -8px;
+	margin-right: -8px;
+}
+
+
+h2 {
+	display: inline;
+}
+
 .all-recipes {
 	margin: 20px;
 }
@@ -52,6 +65,28 @@ a:hover {
 	color: rgb(140, 140, 140)
 }
 
+.show-favorites {
+	padding-right: 10px;
+	float: right;
+	font-size: 15px;
+}
+
 .favorites {
 	font-size: 14px;
+}
+
+.input-search, .random-search, .latest-search {
+	border: none;
+	background-color: white;
+	font-size: 14px;
+	color:rgb(89, 89, 89);;
+}
+
+.random-search {
+	margin-top: 5px;
+	margin-left: -60px;
+}}
+
+.input-search {
+	font-size: 12px;
 }

@@ -20,6 +20,13 @@ app.get('/recipes', (req, res) => {
 		helpers.getRecipesFromMealDB('latest', (recipes) => {
 			res.send(recipes);
 		});
+	} else if (searchFor === 'favorites') {
+		db.fetchRecipes((err, recipes) => {
+			if (err) {console.log('error', err)};
+			console.log('favorite recipes', recipes);
+			res.status(200).send(recipes)
+			// res.send();
+		});
 	} else {
 		helpers.getRecipesFromMealDB(searchFor, (recipes) => {
 			res.send(recipes);
