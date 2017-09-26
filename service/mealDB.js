@@ -13,10 +13,11 @@ angular.module('plan-meals')
 			}).catch(err => console.log('error in GET request', err));
 		}
 
-		let add = (param, callback) => {
+		let add = (recipe, callback) => {
 			let url = 'http://127.0.0.1:2345/recipes';
-			$http.post(url, {search: param}).then((data) => {
+			$http.post(url, {favorite: recipe}).then((data) => {
 				console.log('POST request success', data);
+				callback();
 			}).catch(err => console.log('error in POST request', err));
 		}
 

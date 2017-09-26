@@ -15,6 +15,14 @@ angular.module('plan-meals')
 				mealDB.search(searchFor.toLowerCase(), this.initialData);
 			}
 
+			this.added = () => {
+				alert('Added');
+			}
+
+			this.addToFavorites = (recipe) => {
+				mealDB.add(recipe, this.added);
+			}
+
 			mealDB.search('', this.initialData);
 		},
 
@@ -22,7 +30,8 @@ angular.module('plan-meals')
 			<div id="main">
 				<search search="$ctrl.onSearch"></search>
 				<div class="all-recipes">
-					<recipe-list recipes="$ctrl.recipes">	</recipe-list>
+					<recipe-list add="$ctrl.addToFavorites" recipes="$ctrl.recipes">	
+					</recipe-list>
 				</div>
 			</div>
 		`

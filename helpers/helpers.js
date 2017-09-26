@@ -27,7 +27,7 @@ const parseRecipes = (recipes, callback) => {
 	let parsed = recipes.map(recipe => {
 		
 		let details = {
-			id: recipe.idMeal,
+			recipe_id: Number(recipe.idMeal),
 			name: recipe.strMeal,
 			image: recipe.strMealThumb,
 			url: recipe.strSource,

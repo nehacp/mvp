@@ -1,28 +1,35 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/recipe-app');
-const Recipes = mongoose.model('recipes', new Schema ({
-	id: {
-		type: Number,
-		unique: true
-	},
+mongoose.connect('mongodb://localhost/favoriteRecipes');
 
-	name: String,
-	image: String,
-	ingredients: String,
-	url: String,
-	method: Array
-
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
 });
 
+const Recipe = mongoose.model('recipes', new Schema ({
+		recipe_id: {
+			type: Number,
+			unique: true
+		},
 
-const addRecipe = (details) => {
-	
-	// let recipe = new Recipe(details);
-	// recipe.save()// promisify
+		name: String,
+		image: String,
+		ingredients: Object,
+		url: String,
+		method: Array
+	})
+);
+
+const addRecipe = (recipe, callback) => {
+	let newRecipe = new Recipe(recipe);
+	newRecipe.save(callback);
 }
 
 const findRecipe = (param) => {
 	//Recipes.find()
 }
+
+module.exports.addRecipe = addRecipe;

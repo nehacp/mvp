@@ -5,6 +5,7 @@ angular.module('plan-meals')
 	.component('recipeList', {
 		bindings: {
 			recipes: '<',
+			add: '<'
 		},
 
 		controller: function () {
@@ -13,6 +14,6 @@ angular.module('plan-meals')
 
 		template: `
 			<div class="recipe-box">
-				<recipe recipe="recipe" ng-repeat="recipe in $ctrl.recipes"> </recipe>
+				<recipe add="$ctrl.add" recipe="recipe" ng-repeat="recipe in $ctrl.recipes"> </recipe>
 			</div>`
 	});
