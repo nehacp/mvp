@@ -4,12 +4,16 @@
 angular.module('plan-meals')
 	.component('search', {
 		bindings: {
+			search: '<'
 		},
 
 		controller: function () {
-			//functions for app here
+			this.onClick = (value) => {
+				this.search(value);
+				this.value = '';
+			}
 		},
 
-		template: `<input type="text" ng-model="$ctrl.value" />
-							<button type='submit' ng-click"$ctrl.onClick()">Search</button>`
+		template: `<input placeholder="name of dish..." type="text" ng-model="$ctrl.value"/>
+					<button type="submit" ng-click="$ctrl.onClick($ctrl.value)">Search</button>`
 	});

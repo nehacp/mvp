@@ -11,12 +11,16 @@ angular.module('plan-meals')
 				this.recipes = recipes; 
 			}
 
+			this.onSearch = (searchFor) => {
+				mealDB.search(searchFor.toLowerCase(), this.initialData);
+			}
+
 			mealDB.search('', this.initialData);
 		},
 
 		template: `
 			<div id="main">
-				<search></search>
+				<search search="$ctrl.onSearch"></search>
 				<recipe-list recipes="$ctrl.recipes">	</recipe-list>
 			</div>
 		`
