@@ -10,11 +10,12 @@ const helpers = require('./../helpers/helpers.js');
 app.use(express.static(__dirname+ './../'));
 
 app.get('/recipes', (req, res) => {
-	let data = urlMethods.parse(req.url)
+	let data = urlMethods.parse(req.url);
 	let searchFor = data.query.replace(/%20/g, ' ');
+
 	
 	if (searchFor === '') {
-		helpers.parseRecipes(recipes, (recipes) => {
+		helpers.getRecipesFromMealDB('latest', (recipes) => {
 			res.send(recipes);
 		});
 	} else {

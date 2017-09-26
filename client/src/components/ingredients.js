@@ -9,5 +9,5 @@ angular.module('plan-meals')
 		controller: function () {
 		},
 
-		template: `<div class="ingredient">{{$ctrl.value}} {{$ctrl.key}}</div>`
+		template: `<div class="ingredient-line">{{$ctrl.value}} {{$ctrl.key}}</div>`
 	});

@@ -9,5 +9,5 @@ angular.module('plan-meals')
 			
 		},
 
-		template: `<div class="method">{{$ctrl.line}}.</div>`
+		template: `<div class="method-line">{{$ctrl.line}}.</div>`
 	});

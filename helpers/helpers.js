@@ -2,35 +2,36 @@ const request = require('request');
 
 
 getRecipesFromMealDB = function(param, callback) {
+
 	let mealsByName = `http://www.themealdb.com/api/json/v1/1/search.php?s=${param}`
-	// let mealsByCategory = `http://www.themealdb.com/api/json/v1/1/list.php?c=${param}`
-	// let mealsByIngredient = `http://www.themealdb.com/api/json/v1/1/search.php?i=${param}`
-	// let mealsByArea = `http://www.themealdb.com/api/json/v1/1/search.php?a=${param}`
+	const randomMeal = 'http://www.themealdb.com/api/json/v1/1/random.php';
+	const latestMeals = 'http://www.themealdb.com/api/json/v1/1/latest.php';
 	let meals = [];
-	request(mealsByName, (err, response, meals1) => {
-		// request(mealsByCategory, (err, response, meals2) => {
-		// 	request(mealsByIngredient, (err, response, meals3) => {
-		// 		request(mealsByIngredient, (err, response, meals4) => {
-					meals = meals1 ? meals.concat(JSON.parse(meals1).meals) : meals;
-					// meals = meals2 ? meals.concat(JSON.parse(meals2).meals) : meals;
-					// meals = meals3 ? meals.concat(JSON.parse(meals3).meals) : meals;
-					// meals = meals4 ? meals.concat(JSON.parse(meals4).meals) : meals;
-					//add check for no meals found
-					parseRecipes(meals, callback);
-				})
-	// 		})
-	// 	})
-	// })
+	let searchBy;
+
+	if (param === 'random') {
+		searchBy = randomMeal;
+	} else if (param === 'latest') {
+		searchBy = latestMeals;
+	} else {
+		searchBy = mealsByName;
+	}
+
+	request(searchBy, (err, response, meals1) => {
+		meals = meals1 ? meals.concat(JSON.parse(meals1).meals) : meals;
+		parseRecipes(meals, callback);
+	})
 }
 
 const parseRecipes = (recipes, callback) => {
 	let parsed = recipes.map(recipe => {
 		
 		let details = {
+			id: recipe.idMeal,
 			name: recipe.strMeal,
 			image: recipe.strMealThumb,
 			url: recipe.strSource,
-			method: recipe.strInstructions.split('.')
+			method: recipe.strInstructions.split('. ')
 		}
 
 		let ingredients = [];
@@ -58,6 +59,27 @@ const parseRecipes = (recipes, callback) => {
 
 module.exports.getRecipesFromMealDB = getRecipesFromMealDB;
 module.exports.parseRecipes = parseRecipes;
+
+
+// let mealsByCategory = `http://www.themealdb.com/api/json/v1/1/list.php?c=${param}`
+	// let mealsByIngredient = `http://www.themealdb.com/api/json/v1/1/search.php?i=${param}`
+	// let mealsByArea = `http://www.themealdb.com/api/json/v1/1/search.php?a=${param}`
+
+
+// request(mealsByCategory, (err, response, meals2) => {
+		// 	request(mealsByIngredient, (err, response, meals3) => {
+		// 		request(mealsByIngredient, (err, response, meals4) => {
+
+// meals = meals2 ? meals.concat(JSON.parse(meals2).meals) : meals;
+					// meals = meals3 ? meals.concat(JSON.parse(meals3).meals) : meals;
+					// meals = meals4 ? meals.concat(JSON.parse(meals4).meals) : meals;
+					//add check for no meals found
+
+
+	// 		})
+	// 	})
+	// })
+
 // Search meal by name
 // http://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
 

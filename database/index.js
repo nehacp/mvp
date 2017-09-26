@@ -10,7 +10,7 @@ const Recipes = mongoose.model('recipes', new Schema ({
 
 	name: String,
 	image: String,
-	ingredients: Array,
+	ingredients: String,
 	url: String,
 	method: Array
 

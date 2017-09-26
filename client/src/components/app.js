@@ -21,7 +21,9 @@ angular.module('plan-meals')
 		template: `
 			<div id="main">
 				<search search="$ctrl.onSearch"></search>
-				<recipe-list recipes="$ctrl.recipes">	</recipe-list>
+				<div class="all-recipes">
+					<recipe-list recipes="$ctrl.recipes">	</recipe-list>
+				</div>
 			</div>
 		`
 	});

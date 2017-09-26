@@ -11,5 +11,8 @@ angular.module('plan-meals')
 			//functions for app here
 		},
 
-		template: `<recipe recipe="recipe" ng-repeat="recipe in $ctrl.recipes"></recipe>`
+		template: `
+			<div class="recipe-box">
+				<recipe recipe="recipe" ng-repeat="recipe in $ctrl.recipes"> </recipe>
+			</div>`
 	});
